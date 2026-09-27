@@ -12,15 +12,20 @@ type Todo = {
 type Props = {
     todo : Todo
     onDelete: () => void
+    isSelected : boolean
+    onToggleSelect : (id: number) => void
 }
-const TodoItem = ({ todo, onDelete }: Props) => {
+const TodoItem = ({ todo, onDelete, isSelected, onToggleSelect }: Props) => {
     return (
         <li className="p-3">
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                     <input 
                     type="checkbox" 
-                    className="checkbox checkbox-primary checkbox-sm"/>
+                    className="checkbox checkbox-primary checkbox-sm"
+                    checked={isSelected}
+                    onChange={() => onToggleSelect(todo.id)}
+                    />
 
                     <span className="text-md font-bold">
                         <span>
